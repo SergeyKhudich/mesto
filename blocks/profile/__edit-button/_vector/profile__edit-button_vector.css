@@ -1,0 +1,10 @@
+.profile__edit-button_vector {
+    width: 10px;
+    height: 10px;
+}
+@media screen and (max-width: 550px) {
+    .profile__edit-button_vector {
+        width: 7.5px;
+        height: 7.5px;
+    }
+}

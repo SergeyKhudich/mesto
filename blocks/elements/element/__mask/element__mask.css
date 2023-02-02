@@ -1,0 +1,5 @@
+.element__mask {
+    display: block;
+    object-fit: contain;
+    width: 282px;
+}
