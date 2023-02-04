@@ -1,11 +1,11 @@
-const profileEditButton = document.querySelector('.profile__edit-button'); //объявили кнопку изменения профиля
+const profileEditButton = document.querySelector('.profile__edit'); //объявили кнопку изменения профиля
 const popup = document.querySelector('.popup'); //объявили секцию popup, куда будем добавлять и удалять по клику класс .popup_opened 
 const popupCloseButton = document.querySelector('.popup__button-close'); // объявили кнопку закрытия popup
 
 const profileTitle = document.querySelector('.profile__title'); // объявили заголовок имени профиля
 const profileSubtitle = document.querySelector('.profile__subtitle'); //объявили инфо профиля
-const popupInputName = document.querySelector('.popup__input_name'); //объявили строку имени профиля
-const popupInputInfo = document.querySelector('.popup__input_info'); //объявили строку инфо профиля
+const popupInputName = document.querySelector('.popup__input_form_name'); //объявили строку имени профиля
+const popupInputInfo = document.querySelector('.popup__input_form_info'); //объявили строку инфо профиля
 
 const popupSaveButton = document.querySelector('.popup__container'); //объявили кнопку сохранения
 

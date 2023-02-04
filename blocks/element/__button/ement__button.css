@@ -1,4 +1,4 @@
-.element__group_button {
+.element__button {
     border: none;
     padding: 0;
     background-color: transparent;
@@ -7,6 +7,6 @@
     margin-left: auto;
     transition: opacity 0.6s;
 }
-    .element__group_button:hover {
-        opacity: 0.6;
+    .element__button:hover {
+        opacity: 0.5;
     }

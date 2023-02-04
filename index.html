@@ -10,65 +10,72 @@
   <div class="page">
     <header class="header">
       <img class="header__logo" src="./images/logo.svg" alt="Логотип">
-      <div class="header__line"></div>
     </header>
 <main>
     <section class="profile">
       <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
       <div class="profile__info">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit-button"><img class="profile__edit-button_vector" src="./images/Vector.svg" alt="Карандаш"></button>
+        <button class="profile__edit" type="button">
+          <img class="profile__edit-vector" src="./images/Vector.svg" alt="Карандаш"></button>
         <p class="profile__subtitle">Исследователь океана</p>
       </div>
-      <button class="profile__add-button"><img class="profile__add-button_vector" src="./images/Vector-button.svg" alt="Плюс"></button>
+      <button class="profile__add" type="button">
+        <img class="profile__add-vector" src="./images/Vector-button.svg" alt="Плюс"></button>
     </section>
 
     <section class="elements">
       <div class="element">
         <img class="element__mask" src="./images/karachaevsk.jpg" alt="Карачаевск">
         <div class="element__group">
-          <h3 class="element__group_title">Карачаевск</h3>
-          <button class="element__group_button"><img class="element__group_vector" src="./images/element_Vector.svg" alt="лайк"></button>
+          <h3 class="element__title">Карачаевск</h3>
+          <button class="element__button" type="button">
+            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
         </div>
       </div>
 
       <div class="element">
         <img class="element__mask" src="./images/elbrus.jpg" alt="Эльбрус">
         <div class="element__group">
-          <h3 class="element__group_title">Гора Эльбрус</h3>
-          <button class="element__group_button"><img class="element__group_vector" src="./images/element_Vector.svg" alt="лайк"></button>
+          <h3 class="element__title">Гора Эльбрус</h3>
+          <button class="element__button" type="button">
+            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
         </div>
       </div>
 
       <div class="element">
         <img class="element__mask" src="./images/dombay.jpg" alt="Домбай">
         <div class="element__group">
-          <h3 class="element__group_title">Домбай</h3>
-          <button class="element__group_button"><img class="element__group_vector" src="./images/element_Vector.svg" alt="лайк"></button>
+          <h3 class="element__title">Домбай</h3>
+          <button class="element__button" type="button">
+            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
         </div>
       </div>
 
       <div class="element">
         <img class="element__mask" src="./images/elbrus.jpg" alt="Гора Эльбрус">
         <div class="element__group">
-          <h3 class="element__group_title">Гора Эльбрус</h3>
-          <button class="element__group_button"><img class="element__group_vector" src="./images/element_Vector.svg" alt="лайк"></button>
+          <h3 class="element__title">Гора Эльбрус</h3>
+          <button class="element__button" type="button">
+            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
         </div>
       </div>
 
       <div class="element">
         <img class="element__mask" src="./images/dombay.jpg" alt="Домбай">
         <div class="element__group">
-          <h3 class="element__group_title">Домбай</h3>
-          <button class="element__group_button"><img class="element__group_vector" src="./images/element_Vector.svg" alt="лайк"></button>
+          <h3 class="element__title">Домбай</h3>
+          <button class="element__button" type="button">
+            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
         </div>
       </div>
 
       <div class="element">
         <img class="element__mask" src="./images/karachaevsk.jpg" alt="Карачаево">
         <div class="element__group">
-          <h3 class="element__group_title">Карачаево-Черкесия</h3>
-          <button class="element__group_button"><img class="element__group_vector" src="./images/element_Vector.svg" alt="лайк"></button>
+          <h3 class="element__title">Карачаево-Черкесия</h3>
+          <button class="element__button" type="button">
+            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
         </div>
       </div>
     </section>
@@ -79,13 +86,15 @@
   </div>
 
   <section class="popup">
-    <form class="popup__container">
-      <button class="popup__button-close"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <input type="text" placeholder="Имя" class="popup__input popup__input_name">
-      <input type="text" placeholder="О себе" class="popup__input popup__input_info">
-      <button class="popup__button-save">Сохранить</button>
-    </form>
+    <div class="popup__container">
+      <button class="popup__button-close" type="button"></button>
+      <form class="popup__form" name="profile">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" placeholder="Имя" class="popup__input popup__input_form_name">
+        <input type="text" placeholder="О себе" class="popup__input popup__input_form_info">
+        <button class="popup__button-save" type="submit">Сохранить</button>
+      </form>
+    </div>
   </section>
 
 <script src="./scripts/index.js"></script>

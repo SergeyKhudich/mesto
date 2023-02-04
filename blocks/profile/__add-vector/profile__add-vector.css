@@ -1,11 +1,11 @@
-.profile__add-button_vector {
+.profile__add-vector {
     display: block;
     width: 22px;
     height: 22px;
     object-fit: contain;
 }
 @media screen and (max-width: 550px) {
-    .profile__add-button_vector {
+    .profile__add-vector {
         width: 16px;
         height: 16px;
     }

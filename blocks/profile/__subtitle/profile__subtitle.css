@@ -5,7 +5,7 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    margin-top: 16px;
+    margin-top: 6px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -15,8 +15,7 @@
         font-size: 14px;
         line-height: 17px;
         text-align: center;
-        margin-top: 14px;
+        margin-top: 7px;
         width: 282px;
-        margin-top: 14px;
     }
 }
