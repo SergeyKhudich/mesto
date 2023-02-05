@@ -10,11 +10,14 @@
     margin-right: 36px;
     width: 358px;
     padding: 0;
+    padding-bottom: 8px;
 }
 @media screen and (max-width: 550px) {
     .popup__input {
         margin-left: 22px;
         margin-right: 22px;
+        margin-bottom: 30px;
         width: 238px;
+        padding-bottom: 8px;
     }
 }
