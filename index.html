@@ -12,7 +12,7 @@
       <img class="header__logo" src="./images/logo.svg" alt="Логотип">
     </header>
 
-    <main>
+    <main class="main">
       <section class="profile">
         <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
         <div class="profile__info">
@@ -33,7 +33,7 @@
       <p class="footer__title">© 2023 Mesto Russia</p>
     </footer>
     
-    <section class="popup" id="popup__profile-edit">
+    <div class="popup" id="popup__profile-edit">
       <div class="popup__container">
         <button class="popup__button-close" type="button"></button>
         <form class="popup__form" name="profile">
@@ -43,9 +43,9 @@
           <button class="popup__button-save" type="submit">Сохранить</button>
         </form>
       </div>
-    </section>
+    </div>
 
-    <section class="popup" id="popup__profile-add">
+    <div class="popup" id="popup__profile-add">
       <div class="popup__container">
         <button class="popup__button-close" type="button"></button>
         <form class="popup__form" name="profile">
@@ -55,15 +55,15 @@
           <button class="popup__button-save" type="submit">Создать</button>
         </form>
       </div>
-    </section>
+    </div>
 
-    <section class="popup" id="popup__img">
+    <div class="popup" id="popup__img">
       <figure class="popup__card">
         <button class="popup__button-close" id="popup__img-close" type="button"></button>
         <img class="popup__image" src="#" alt="">
         <figcaption class="popup__image-name"></figcaption>
       </figure>
-    </section>
+    </div>
 
     <template id="item-template">
       <div class="element">
