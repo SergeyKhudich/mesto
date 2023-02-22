@@ -5,4 +5,5 @@
     border-radius: 10px;
     color: black;
     overflow: hidden;
+    position: relative;
 }

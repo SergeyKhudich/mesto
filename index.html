@@ -11,92 +11,73 @@
     <header class="header">
       <img class="header__logo" src="./images/logo.svg" alt="Логотип">
     </header>
-<main>
-    <section class="profile">
-      <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
-      <div class="profile__info">
-        <h1 class="profile__title">Жак-Ив Кусто</h1>
-        <button class="profile__edit" type="button">
-          <img class="profile__edit-vector" src="./images/Vector.svg" alt="Карандаш"></button>
-        <p class="profile__subtitle">Исследователь океана</p>
-      </div>
-      <button class="profile__add" type="button">
-        <img class="profile__add-vector" src="./images/Vector-button.svg" alt="Плюс"></button>
-    </section>
 
-    <section class="elements">
-      <div class="element">
-        <img class="element__mask" src="./images/karachaevsk.jpg" alt="Карачаевск">
-        <div class="element__group">
-          <h3 class="element__title">Карачаевск</h3>
-          <button class="element__button" type="button">
-            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
+    <main>
+      <section class="profile">
+        <img class="profile__avatar" src="./images/image.jpg" alt="Аватар">
+        <div class="profile__info">
+          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <button class="profile__edit" type="button">
+            <img class="profile__edit-vector" src="./images/Vector.svg" alt="Карандаш"></button>
+          <p class="profile__subtitle">Исследователь океана</p>
         </div>
-      </div>
+        <button class="profile__add" type="button">
+          <img class="profile__add-vector" src="./images/Vector-button.svg" alt="Плюс"></button>
+      </section>
 
-      <div class="element">
-        <img class="element__mask" src="./images/elbrus.jpg" alt="Эльбрус">
-        <div class="element__group">
-          <h3 class="element__title">Гора Эльбрус</h3>
-          <button class="element__button" type="button">
-            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
-        </div>
-      </div>
+      <section class="elements">
+      </section>
+    </main>
 
-      <div class="element">
-        <img class="element__mask" src="./images/dombay.jpg" alt="Домбай">
-        <div class="element__group">
-          <h3 class="element__title">Домбай</h3>
-          <button class="element__button" type="button">
-            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
-        </div>
-      </div>
-
-      <div class="element">
-        <img class="element__mask" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-        <div class="element__group">
-          <h3 class="element__title">Гора Эльбрус</h3>
-          <button class="element__button" type="button">
-            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
-        </div>
-      </div>
-
-      <div class="element">
-        <img class="element__mask" src="./images/dombay.jpg" alt="Домбай">
-        <div class="element__group">
-          <h3 class="element__title">Домбай</h3>
-          <button class="element__button" type="button">
-            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
-        </div>
-      </div>
-
-      <div class="element">
-        <img class="element__mask" src="./images/karachaevsk.jpg" alt="Карачаево">
-        <div class="element__group">
-          <h3 class="element__title">Карачаево-Черкесия</h3>
-          <button class="element__button" type="button">
-            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк"></button>
-        </div>
-      </div>
-    </section>
-</main>
     <footer class="footer">
       <p class="footer__title">© 2023 Mesto Russia</p>
     </footer>
+    
+    <section class="popup" id="popup__profile-edit">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <form class="popup__form" name="profile">
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <input type="text" placeholder="Имя" class="popup__input popup__input_form_name">
+          <input type="text" placeholder="О себе" class="popup__input popup__input_form_info">
+          <button class="popup__button-save" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="popup" id="popup__profile-add">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <form class="popup__form" name="profile">
+          <h2 class="popup__title">Новое место</h2>
+          <input type="text" placeholder="Название" name="place" class="popup__input popup__input_form_place">
+          <input type="text" placeholder="Ссылка на картинку" name="link" class="popup__input popup__input_form_link">
+          <button class="popup__button-save" type="submit">Создать</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="popup" id="popup__img">
+      <figure class="popup__card">
+        <button class="popup__button-close" id="popup__img-close" type="button"></button>
+        <img class="popup__image" src="#" alt="">
+        <figcaption class="popup__image-name"></figcaption>
+      </figure>
+    </section>
+
+    <template id="item-template">
+      <div class="element">
+        <img class="element__mask" src="#" alt="">
+        <button class="element__trash"></button>
+        <div class="element__group">
+          <h3 class="element__title"></h3>
+          <button class="element__button" type="button">
+            <img class="element__vector" src="./images/element_Vector.svg" alt="лайк">
+          </button>
+        </div>
+      </div>
+    </template>
   </div>
-
-  <section class="popup">
-    <div class="popup__container">
-      <button class="popup__button-close" type="button"></button>
-      <form class="popup__form" name="profile">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <input type="text" placeholder="Имя" class="popup__input popup__input_form_name">
-        <input type="text" placeholder="О себе" class="popup__input popup__input_form_info">
-        <button class="popup__button-save" type="submit">Сохранить</button>
-      </form>
-    </div>
-  </section>
-
 <script src="./scripts/index.js"></script>
 </body>
 </html>
