@@ -1,0 +1,19 @@
+.popup__input-span {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    opacity: 0;
+    margin-top: -25px;
+    margin-left: 36px;
+    margin-right: 36px;
+    width: 358px;
+}
+@media screen and (max-width: 550px) {
+    .popup__input_span {
+        margin-left: 22px;
+        margin-right: 22px;
+        width: 238px;
+        padding-bottom: 8px;
+    }
+}

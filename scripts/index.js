@@ -35,10 +35,16 @@ const popupSaveButton = document.querySelector('.popup__container'); //объя�
 
 const openPopup = (popupActive) => { // ф-я добавления класса .popup_opened в аргумент DOM-элемента
   popupActive.classList.add('popup_opened'); // добавляем класс стилей в HTML
+  document.addEventListener('keydown', (evt) => { //Закрываем попам нажатием на ESC
+    if (evt.key === 'Escape') {
+      popupActive.classList.remove('popup_opened');
+    };
+  });
 };
+
 const closePopup = (popupActive) => { // ф-я удаления класса .popup_opened из аргумента DOM-элемента
   popupActive.classList.remove('popup_opened'); // удаляем класс стилей из HTML
-}
+};
 const profileEditButtonPasteForm = () => { //получаем значения профиля и вставляем заголовки в форму
     popupInputName.value = profileTitle.textContent; //получаем значение заголовка имени профиля
     popupInputInfo.value = profileSubtitle.textContent; //получаем знач инфы профиля
@@ -105,3 +111,13 @@ function createCard(name, link) { // Вставка карточек
 closePopupImgButton.addEventListener('click', () => closePopup(popupImg));//по клику по крестик закрываем фотографию карточки
 const addCardToElements = (card) => {elements.prepend(card)}; //ф-я вставки разметки для новой карточки
 initialCards.forEach((item) => {addCardToElements (createCard(item.name, item.link))}); //вставляем карточки из коробки
+
+// 6 СПРИНТ
+const sectionPopup = document.querySelectorAll('.popup'); //объявили секцию попапа
+sectionPopup.forEach(item => { // При клике вне попапа закрываем его
+  item.addEventListener('click', (evt) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(item);
+    }
+  });
+});
