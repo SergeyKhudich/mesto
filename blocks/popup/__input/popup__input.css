@@ -5,13 +5,13 @@
     line-height: 17px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, .2);
-    margin-bottom: 30px;
+    margin-bottom: 18px;
     margin-left: 36px;
     margin-right: 36px;
     width: 358px;
     padding: 0;
     padding-bottom: 8px;
-    margin-top: 13px;
+    margin-top: -1px;
 }
 @media screen and (max-width: 550px) {
     .popup__input {
