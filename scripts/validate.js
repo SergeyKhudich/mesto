@@ -59,8 +59,8 @@ const setEventListeners = (formElement) => { //добавляем слушате
 
 const enableValidation = (validationList) => { //ф-я находит и перебирает все формы на странице
     const formList = Array.from(document.querySelectorAll(validationList.formSelector)); //находим все формы с указанным классом и делаем из них массив
-    formList.forEach((formElement) => { //переберем полученную коллекцию
-        setEventListeners(formElement); //для каждой формы вызовем ф-ю setEventListeners, передав ей элемент формы
+    formList.forEach((popupForm) => { //переберем полученную коллекцию
+        setEventListeners(popupForm); //для каждой формы вызовем ф-ю setEventListeners, передав ей элемент формы
     });
 };
 

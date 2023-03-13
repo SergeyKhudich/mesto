@@ -42,6 +42,7 @@ const openPopup = (popupActive) => { // ф-я добавления класса 
 
 const closePopup = (popupActive) => { // ф-я удаления класса .popup_opened из аргумента DOM-элемента
   popupActive.classList.remove('popup_opened'); // удаляем класс стилей из HTML
+  document.removeEventListener('keydown', closeByEsc); //удаляем слушатель, чтобы система не продолжала обрабатывать нажатия на клавиатуре
 };
 
 function closeByEsc(evt) { //ф-я закрытия попапа нажатием на ESC
