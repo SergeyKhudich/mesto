@@ -24,6 +24,20 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+const validationList = ({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save', //активная кнопка
+  inactiveButtonClass: 'popup__button_disabled', //неактивная кнопка
+  inputErrorClass: 'popup__input_type_error', //нижнее подчеркивание красным
+  spanErrorClass: 'popup__input-span-active' //текст ошибки
+});
+
+//ИМПОРТ
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 // 4 СПРИНТ
 const profileEditButton = document.querySelector('.profile__edit'); //объявили кнопку изменения профиля
 const popupProfileEdit = document.querySelector('#popup__profile-edit'); //объявили секцию popup, куда будем добавлять и удалять по клику класс .popup_opened 
@@ -72,7 +86,6 @@ profileEditButton.addEventListener('click', editprofileEditButton); //по кл�
 popupProfileEditCloseButton.addEventListener('click', () => closePopup(popupProfileEdit)); //по клику на кнопку крестик в попапе выполнится ф-я удаления класса (закрытие попап)
 popupProfileEditForm.addEventListener('submit', popupFormSubmit); //сохраняем измененные данные на странице, нажав конопку, либо enter
 
-
 //5 СПРИНТ
 const profileAddButton = document.querySelector('.profile__add'); //объявили кнопку добавления карточки (ПЛЮС)
 const popupProfileAdd = document.querySelector('#popup__profile-add'); //объявили секцию popup добавления карточки, куда будем добавлять и удалять по клику класс .popup_opened 
@@ -85,52 +98,34 @@ const popupImage = popupImg.querySelector('.popup__image'); //объявили �
 const popupImageName = popupImg.querySelector('.popup__image-name'); //объявили название фотографии
 const closePopupImgButton = popupImg.querySelector('#popup__img-close'); //объявили кнопку закрытия попапа
 const elementsContainer = document.querySelector('.elements'); //объявили секцию, где лежат карточки
-const template = document.querySelector('#item-template').content;
 
-// Добавление/удаление карточек
+// Добавление карточки
 const popupProfileAddFormSubmit = function(evt) { //ф-я отправки формы и добавления карточки
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. Так мы можем определить свою логику отправки.
-    addCardToElements(createCard(placeInput.value, linkInput.value)); // создаём карточку
-    closePopup(popupProfileAdd); // закрываем попап вызовом этой функции
-    popupProfileAddSaveButton.reset(); //очищаем форму добавления карточки
-    evt.submitter.classList.add('popup__button_disabled'); //делаем кнопку сохранения неактивной (evt.submitter тут находится кнопка с событием сабмита в форме)
-    evt.submitter.disabled = true; //включаем атрибут disabled
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. Так мы можем определить свою логику отправки.
+
+  const cardItem = { //данные введенные пользователем
+    link: linkInput.value,
+    name: placeInput.value,
+  };
+  const newCard = createCard(cardItem); //создаем карточку на основе введенных данных пользователя
+  addCard(newCard); //вставляем созданную карточку в разметку
+  closePopup(popupProfileAdd); // закрываем попап вызовом этой функции
+  popupProfileAddSaveButton.reset(); //очищаем форму добавления карточки
+  evt.submitter.classList.add('popup__button_disabled'); //делаем кнопку сохранения неактивной (evt.submitter тут находится кнопка с событием сабмита в форме)
+  evt.submitter.disabled = true; //включаем атрибут disabled
 };
 
-const trashCard = (evt) => { // ф-я удаления карточки 
-    evt.target.closest('.element').remove();
+const openImage = (link, name) => { //ф-я открытия картинки из карточки
+  popupImage.src = link;
+  popupImage.alt = name;
+  popupImageName.textContent = name;
+  openPopup(popupImg);
 };
-
-function createCard(name, link) { // Вставка карточек
-    const item = template.querySelector('.element').cloneNode(true); //клонируем разметку (.element) и её детей (true)
-    const itemImg= item.querySelector('.element__mask'); //объявили куда будем вставлять картинку
-    const itemTitle = item.querySelector('.element__title'); //объявили куда будем вставлять текст названия карточки
-    item.querySelector('.element__vector').addEventListener('click', function (event) { //ф-я лайка, добавления класса с активным "сердцем"
-        event.target.classList.toggle('element__button_active')
-    });
-    const deleteButton = item.querySelector('.element__trash');
-    deleteButton.addEventListener('click', trashCard); //по клику на "корзину" удаляем карточку
-    itemImg.src = link; //вставляем ссылку на картинку из link
-    itemImg.alt = name; //вставляем название картинки, если она не прогрузится
-    itemTitle.textContent = name; //вставляем текст имени карточки
-    const openImage = () => { //ф-я открытия картинки из карточки
-        popupImage.src = link;
-        popupImage.alt = name;
-        popupImageName.textContent = name;
-        openPopup(popupImg);
-    };
-    itemImg.addEventListener('click', openImage);
-    return item;
-};
-
-const addCardToElements = (card) => {elementsContainer.prepend(card)}; //ф-я вставки разметки для новой карточки
-initialCards.forEach((item) => {addCardToElements (createCard(item.name, item.link))}); //вставляем карточки из коробки
 
 popupProfileAddSaveButton.addEventListener('submit', popupProfileAddFormSubmit); //вызываем ф-ю отправки формы и добавления карточки
 profileAddButton.addEventListener('click', () => openPopup(popupProfileAdd)); //по клику на кнопку в профиле выполнится ф-я добавления класса (открытие попап добавления карточки)
 popupProfileAddCloseButton.addEventListener('click', () => closePopup(popupProfileAdd)); //по клику на кнопку крестик в попапе добавления карточки выполнится ф-я удаления класса (закрытие попап)
 closePopupImgButton.addEventListener('click', () => closePopup(popupImg));//по клику по крестик закрываем фотографию карточки
-
 
 // 6 СПРИНТ
 const popupList = document.querySelectorAll('.popup'); //объявили секцию попапа
@@ -142,3 +137,31 @@ popupList.forEach(item => { // При клике вне попапа закры�
     }
   });
 });
+
+// 7 СПРИНТ
+
+//Работаем с классом Card
+function createCard (data) { //создание карточки с помощью Класса
+  const newCard = new Card(data, '#item-template', openImage);
+  const cardElement = newCard.generateCard();
+  return cardElement;
+};
+
+const addCard = (data) => { //вставка в разметку HTML
+  elementsContainer.prepend(data);
+};
+
+initialCards.forEach((item) => { //создаем заготовленные карточки из массива
+  const Card = createCard(item);
+  addCard(Card);
+});
+
+//Работаем с классом FormValidator
+const formProfileEdit = document.forms['form-profile-edit']; //задали форму редиктирования профиля
+const formProfileAdd = document.forms['form-profile-add']; //задали форму добавления карточки
+
+const formValidatorProfileEdit = new FormValidator(validationList, formProfileEdit); //валидотор для редиктирования профиля
+const formValidatorProfileAdd = new FormValidator(validationList, formProfileAdd); //валидотор для добавления карточки
+
+formValidatorProfileEdit.enableValidation(); //вызвали валидотор
+formValidatorProfileAdd.enableValidation(); //вызвали валидотор
