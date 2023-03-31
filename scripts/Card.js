@@ -3,12 +3,6 @@ class Card {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
-        this._template = this._getTemplate();
-        this._element = this._template.querySelector('.element');
-        this._cardImage = this._element.querySelector('.element__mask');
-        this._cardText = this._element.querySelector('.element__title');
-        this._delete = this._element.querySelector('.element__trash');
-        this._like = this._element.querySelector('.element__vector');
         this._openImage = openImage;
     };
 
@@ -16,16 +10,17 @@ class Card {
         const cardElement = document//создали элемент
           .querySelector(this._templateSelector)//нашли темплит-элемент
           .content//извлекаем его содержимое
-          //.querySelector(this._element)//в содержимом нашли элемент с классом element
+          .querySelector('.element')//в содержимом нашли элемент с классом element
           .cloneNode(true);//клонирование
     
         return cardElement;//возвращаем клонированный элемент
     };
 
+    
     _setEventListeners() {
         this._like.addEventListener('click', () => { this._clickCardLike() }); //слушатель на кнопке лайк
         this._cardImage.addEventListener('click', () => { this._clickCardOpenImage() }); //слушатель на фотографии карточки
-        this._delete.addEventListener('click', (evt) => { evt.target.closest('.element').remove()}); //слушатель на кнопке удаления (корзина)
+        this._delete.addEventListener('click', () => { this._clickCardDelete() }); //слушатель на кнопке удаления (корзина)
     };
 
         _clickCardLike() { //Активный/неактивный лайк
@@ -34,9 +29,17 @@ class Card {
         _clickCardOpenImage() { //открытие попапа с фотографией
             this._openImage(this._link, this._name);
         };
+        _clickCardDelete() { // удаляем карточку, обнуляем память
+            this._element.remove();
+            this._element = null;
+        };
 
     generateCard() {//вставляем данные из массива
-        this._element = this._template;
+        this._element = this._getTemplate();
+        this._cardImage = this._element.querySelector('.element__mask');
+        this._cardText = this._element.querySelector('.element__title');
+        this._like = this._element.querySelector('.element__vector');
+        this._delete = this._element.querySelector('.element__trash');
         this._setEventListeners();
         this._cardImage.src = this._link;
         this._cardImage.alt = this._name;

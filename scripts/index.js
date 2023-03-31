@@ -41,7 +41,6 @@ import FormValidator from './FormValidator.js';
 // 4 СПРИНТ
 const profileEditButton = document.querySelector('.profile__edit'); //объявили кнопку изменения профиля
 const popupProfileEdit = document.querySelector('#popup__profile-edit'); //объявили секцию popup, куда будем добавлять и удалять по клику класс .popup_opened 
-const popupProfileEditCloseButton = popupProfileEdit.querySelector('.popup__button-close'); // объявили кнопку закрытия popup
 const profileTitle = document.querySelector('.profile__title'); // объявили заголовок имени профиля
 const profileSubtitle = document.querySelector('.profile__subtitle'); //объявили инфо профиля
 const popupInputName = document.querySelector('.popup__input_form_name'); //объявили строку имени профиля
@@ -74,6 +73,7 @@ const profileEditButtonPasteForm = () => { //получаем значения �
 const editprofileEditButton = () => { //обрабатываем нажатие на кнопку изменения профиля
     profileEditButtonPasteForm();
     openPopup(popupProfileEdit);
+    formValidatorProfileEdit.resetValidation();
 };
 const popupFormSubmit = function(evt) { //ф-я отправки формы
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. Так мы можем определить свою логику отправки.
@@ -83,20 +83,17 @@ const popupFormSubmit = function(evt) { //ф-я отправки формы
 };
 
 profileEditButton.addEventListener('click', editprofileEditButton); //по клику на кнопку в профиле выполнится обработка нажатия кнопки
-popupProfileEditCloseButton.addEventListener('click', () => closePopup(popupProfileEdit)); //по клику на кнопку крестик в попапе выполнится ф-я удаления класса (закрытие попап)
 popupProfileEditForm.addEventListener('submit', popupFormSubmit); //сохраняем измененные данные на странице, нажав конопку, либо enter
 
 //5 СПРИНТ
 const profileAddButton = document.querySelector('.profile__add'); //объявили кнопку добавления карточки (ПЛЮС)
 const popupProfileAdd = document.querySelector('#popup__profile-add'); //объявили секцию popup добавления карточки, куда будем добавлять и удалять по клику класс .popup_opened 
-const popupProfileAddCloseButton = popupProfileAdd.querySelector('.popup__button-close'); // объявили кнопку закрытия popup добавления карточки
 const popupProfileAddSaveButton = popupProfileAdd.querySelector('.popup__form'); //объявили форму сохраниения карточки
 const placeInput = popupProfileAdd.querySelector('.popup__input_form_place'); //объявили инпут названия
 const linkInput = popupProfileAdd.querySelector('.popup__input_form_link'); //объявили инпут ссылки на картинку
 const popupImg = document.querySelector('#popup__img'); //объявили попап открытия фотографии
 const popupImage = popupImg.querySelector('.popup__image'); //объявили фотографию попапа
 const popupImageName = popupImg.querySelector('.popup__image-name'); //объявили название фотографии
-const closePopupImgButton = popupImg.querySelector('#popup__img-close'); //объявили кнопку закрытия попапа
 const elementsContainer = document.querySelector('.elements'); //объявили секцию, где лежат карточки
 
 // Добавление карточки
@@ -111,8 +108,6 @@ const popupProfileAddFormSubmit = function(evt) { //ф-я отправки фо�
   addCard(newCard); //вставляем созданную карточку в разметку
   closePopup(popupProfileAdd); // закрываем попап вызовом этой функции
   popupProfileAddSaveButton.reset(); //очищаем форму добавления карточки
-  evt.submitter.classList.add('popup__button_disabled'); //делаем кнопку сохранения неактивной (evt.submitter тут находится кнопка с событием сабмита в форме)
-  evt.submitter.disabled = true; //включаем атрибут disabled
 };
 
 const openImage = (link, name) => { //ф-я открытия картинки из карточки
@@ -122,10 +117,21 @@ const openImage = (link, name) => { //ф-я открытия картинки и
   openPopup(popupImg);
 };
 
+const editprofileAddButton = () => { //обрабатываем нажатие на кнопку добавления карточки
+  openPopup(popupProfileAdd);
+  placeInput.value = '';
+  linkInput.value = '';
+  formValidatorProfileAdd.resetValidation();
+}
+
 popupProfileAddSaveButton.addEventListener('submit', popupProfileAddFormSubmit); //вызываем ф-ю отправки формы и добавления карточки
-profileAddButton.addEventListener('click', () => openPopup(popupProfileAdd)); //по клику на кнопку в профиле выполнится ф-я добавления класса (открытие попап добавления карточки)
-popupProfileAddCloseButton.addEventListener('click', () => closePopup(popupProfileAdd)); //по клику на кнопку крестик в попапе добавления карточки выполнится ф-я удаления класса (закрытие попап)
-closePopupImgButton.addEventListener('click', () => closePopup(popupImg));//по клику по крестик закрываем фотографию карточки
+profileAddButton.addEventListener('click', editprofileAddButton); //по клику на кнопку в профиле выполнится ф-я добавления класса (открытие попап добавления карточки)
+
+ //обрабатываем все крестики закрытия попапов
+ document.querySelectorAll('.popup__button-close').forEach(button => {
+  const buttonsPopup = button.closest('.popup'); // нашли родителя с нужным классом
+  button.addEventListener('click', () => closePopup(buttonsPopup)); // закрыли попап
+}); 
 
 // 6 СПРИНТ
 const popupList = document.querySelectorAll('.popup'); //объявили секцию попапа
@@ -152,8 +158,8 @@ const addCard = (data) => { //вставка в разметку HTML
 };
 
 initialCards.forEach((item) => { //создаем заготовленные карточки из массива
-  const Card = createCard(item);
-  addCard(Card);
+  const card = createCard(item);
+  addCard(card);
 });
 
 //Работаем с классом FormValidator

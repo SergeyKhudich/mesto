@@ -28,14 +28,14 @@ class FormValidator {
       }
     };
   
-    _hasInvalidInput = (inputList) => { //проверяем все ли поля валидны, если хоть одно поле невалидно, то валидация не прошла
-      return inputList.some((inputElement) => {
+    _hasInvalidInput = () => { //проверяем все ли поля валидны, если хоть одно поле невалидно, то валидация не прошла
+      return this._inputs.some((inputElement) => {
         return !inputElement.validity.valid;
       });
     };
   
     _toggleButtonState = () => { //делаем кнопку сохранить/создать неактивной/активной
-      if (this._hasInvalidInput(this._inputs)) { //если невалидно- делаем кнопку неактивной
+      if (this._hasInvalidInput()) { //если невалидно- делаем кнопку неактивной
         this._button.disabled = true;
         this._button.classList.add(this._setting.inactiveButtonClass);
       } else { //иначе делаем активной
@@ -53,6 +53,13 @@ class FormValidator {
       });
       this._toggleButtonState();
     };
+
+    resetValidation() { //очищаем форму от ошибок
+      this._toggleButtonState(); //управляем кнопкой
+      this._inputs.forEach((inputElement) => {
+        this._hideInputError(inputElement) //очищаем ошибки
+      });
+    }
   
     enableValidation() { //публичный метод, который включает валидацию формы
       this._setEventListeners();
